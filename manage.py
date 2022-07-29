@@ -8,7 +8,7 @@ from flask_migrate import Migrate
 from flask.cli import FlaskGroup
 
 from app.main import create_app, db
-from app.main.model import users
+from app.main.model import user
 from app import blueprint
 
 
