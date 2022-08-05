@@ -1,14 +1,14 @@
-from flask import Flask, request
+from flask import request
 from flask_restx import Resource
 
-from ..util.dto import TodoDto
 #from model import todo  # call model file
-from flask_cors import CORS  # to avoid cors error in different frontend like react js or any other
+#from app.main.util.decorator import admin_token_required
+from ..util.dto import TodoDto
 from ..service.todo_service import insert, update, delete, find, find_by_id
 from typing import Dict, Tuple
 
-app = Flask(__name__)
-CORS(app)
+#app = Flask(__name__)
+#CORS(app)
 
 api = TodoDto.api
 _todo = TodoDto.todo
@@ -35,31 +35,31 @@ class UserList(Resource):
 
 # todo routes
 
-@app.route('/', methods=['GET'])
+@api.route('/')
 class TaskList(Resource):
     @api.doc('list of todo')
-    def get():
+    def get(self):
+        """List all Todo"""
         return find({}), 200
-
 
     @api.expect(_todo, validate=True)
     @api.response(201, 'Todo successfully created.')
     @api.doc('create a new todo')
     def post(self) -> Tuple[Dict[str, str], int]:
+        """Create a new Todos"""
         title = request.form['title']
         body = request.form['body']
         response = insert({'title': title, 'body': body})
         return response, 201
 
 
-
-
-@app.route('/<string:todo_id>/', methods=['GET'])
+@api.route('/<string:todo_id>')
 @api.param('todo_id', 'The Todo identifier')
 @api.response(404, 'Todo not found.')
 class Task(Resource):
     @api.doc('get a todo')
     def get(self, todo_id):
+        """Get a Todos"""
         #return find_by_id(todo_id), 200
         todo = find_by_id(todo_id)
         if not todo:
@@ -67,16 +67,17 @@ class Task(Resource):
         else:
             return todo
 
+    @api.doc('update a todo')
+    def put(self, todo_id):
+        """Update a Todos"""
+        title = request.form['title']
+        body = request.form['body']
+        response = update(todo_id, {'title': title, 'body': body})
+        return response, 201
 
-@app.route('/<string:todo_id>/', methods=['PUT'])
-def update(todo_id):
-    title = request.form['title']
-    body = request.form['body']
-    response = update(todo_id, {'title': title, 'body': body})
-    return response, 201
 
-
-@app.route('/<string:todo_id>/', methods=['DELETE'])
-def delete(todo_id):
-    delete(todo_id)
-    return "Record Deleted"
+    @api.doc('deletee a todo')
+    def delete(self, todo_id):
+        """Delete a Todos"""
+        delete(todo_id)
+        return "Record Deleted"

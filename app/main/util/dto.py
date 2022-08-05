@@ -19,7 +19,7 @@ class AuthDto:
 
 
 class TodoDto:
-    api = Namespace('todo', description='user related operations')
+    api = Namespace('todo', description='todo related operations')
     todo = api.model('todo', {
         'email': fields.String(required=True, description='user email address'),
         'public_id': fields.String(description='user Identifier')
