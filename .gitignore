@@ -1,2 +1,10 @@
 /__pycache__
-/views/__pycache__
+/migrations/__pycache__
+/migrations/versions/__pycache__
+/app/__pycache__
+/app/test/__pycache__
+/app/main/__pycache__
+/app/main/controller/__pycache__
+/app/main/model/__pycache__
+/app/main/service/__pycache__
+/app/main/util/__pycache__
