@@ -18,9 +18,9 @@ authorizations = {
 }
 
 api = Api(blueprint,
-          title='FLASK RESTX API BOILER-PLATE WITH JWT',
+          title='FLASK RESTX API SAMPLE WITH JWT',
           version='1.0',
-          description='a boilerplate for flask restx web service',
+          description='a sample for flask restx web service',
           authorizations=authorizations,
           security='apikey'
           )
