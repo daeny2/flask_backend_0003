@@ -4,7 +4,7 @@ from flask_restx import Resource
 #from model import todo  # call model file
 #from app.main.util.decorator import admin_token_required
 from ..util.dto import TodoDto
-from ..service.todo_service import insert, update, delete, find, find_by_id
+from ..service.todo_service import create, find, update, delete, find_by_id
 from typing import Dict, Tuple
 
 #app = Flask(__name__)
@@ -49,7 +49,7 @@ class TaskList(Resource):
         """Create a new Todos"""
         title = request.form['title']
         body = request.form['body']
-        response = insert({'title': title, 'body': body})
+        response = create({'title': title, 'body': body})
         return response, 201
 
 
