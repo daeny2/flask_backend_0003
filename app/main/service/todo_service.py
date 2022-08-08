@@ -10,12 +10,14 @@ from ...config_db import config_db
 from ..model.todo import Database, Validator
 
 
-class Todo(object):
+class Todo:
     def __init__(self):
         self.validator = Validator()
         self.db = Database()
 
-        self.collection_name = 'todos'  # collection name
+        print(self.db)
+
+        self.collection_name = 'Clouflake'  # collection name
 
         self.fields = {
             "title": "string",

@@ -15,23 +15,6 @@ _todo = TodoDto.todo
 #todo = todo.Todo()
 
 
-"""
-@api.route('/')
-class UserList(Resource):
-    @api.doc('list_of_registered_users')
-    @api.marshal_list_with(_user, envelope='data')
-    def get(self):
-        #List all registered users
-        return get_all_users()
-
-    @api.expect(_user, validate=True)
-    @api.response(201, 'User successfully created.')
-    @api.doc('create a new user')
-    def post(self) -> Tuple[Dict[str, str], int]:
-        #Creates a new User
-        data = request.json
-        return save_new_user(data=data)
-"""
 
 # todo routes
 
