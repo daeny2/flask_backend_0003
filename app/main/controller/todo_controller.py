@@ -4,7 +4,7 @@ from flask_restx import Resource
 #from model import todo  # call model file
 #from app.main.util.decorator import admin_token_required
 from ..util.dto import TodoDto
-from ..service.todo_service import create, find, update, delete, find_by_id
+from ..service.todo_service import Todo #create, update, delete, find, find_by_id
 from typing import Dict, Tuple
 
 #app = Flask(__name__)
@@ -40,7 +40,7 @@ class TaskList(Resource):
     @api.doc('list of todo')
     def get(self):
         """List all Todo"""
-        return find({}), 200
+        return Todo.find({}), 200
 
     @api.expect(_todo, validate=True)
     @api.response(201, 'Todo successfully created.')
@@ -49,7 +49,7 @@ class TaskList(Resource):
         """Create a new Todos"""
         title = request.form['title']
         body = request.form['body']
-        response = create({'title': title, 'body': body})
+        response = Todo.create({'title': title, 'body': body})
         return response, 201
 
 
@@ -61,7 +61,7 @@ class Task(Resource):
     def get(self, todo_id):
         """Get a Todos"""
         #return find_by_id(todo_id), 200
-        todo = find_by_id(todo_id)
+        todo = Todo.find_by_id(todo_id)
         if not todo:
             api.abort(404)
         else:
@@ -72,12 +72,12 @@ class Task(Resource):
         """Update a Todos"""
         title = request.form['title']
         body = request.form['body']
-        response = update(todo_id, {'title': title, 'body': body})
+        response = Todo.update(todo_id, {'title': title, 'body': body})
         return response, 201
 
 
     @api.doc('deletee a todo')
     def delete(self, todo_id):
         """Delete a Todos"""
-        delete(todo_id)
+        Todo.delete(todo_id)
         return "Record Deleted"
