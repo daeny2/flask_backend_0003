@@ -15,8 +15,8 @@ class Database(object):
         print(self.db)
 
     def insert(self, element, collection_name):
-        element["created"] = datetime.now()
-        element["updated"] = datetime.now()
+        element["date"] = datetime.now()
+        #element["updated"] = datetime.now()
         inserted = self.db[collection_name].insert_one(element)  # insert data to db
         return str(inserted.inserted_id)
 
@@ -52,7 +52,7 @@ class Database(object):
     def update(self, id, element, collection_name):
         criteria = {"_id": ObjectId(id)}
 
-        element["updated"] = datetime.now()
+        element["date"] = datetime.now()
         set_obj = {"$set": element}  # update value
 
         updated = self.db[collection_name].update_one(criteria, set_obj)

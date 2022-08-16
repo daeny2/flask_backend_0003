@@ -20,19 +20,19 @@ class Todo:
         self.collection_name = 'Clouflake'  # collection name
 
         self.fields = {
-            "title": "string",
-            "body": "string",
-            "created": "datetime",
-            "updated": "datetime",
+            "name": "string",
+            "bio": "string",
+            "tags": "array",
+            "date": "datetime",
         }
 
-        self.create_required_fields = ["title", "body"]
+        self.create_required_fields = ["name", "bio"]
 
         # Fields optional for CREATE
         self.create_optional_fields = []
 
         # Fields required for UPDATE
-        self.update_required_fields = ["title", "body"]
+        self.update_required_fields = ["name", "bio"]
 
         # Fields optional for UPDATE
         self.update_optional_fields = []

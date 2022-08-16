@@ -7,13 +7,9 @@ from ..util.dto import TodoDto
 from ..service.todo_service import Todo #create, update, delete, find, find_by_id
 from typing import Dict, Tuple
 
-#app = Flask(__name__)
-#CORS(app)
-
 api = TodoDto.api
 _todo = TodoDto.todo
 #todo = todo.Todo()
-
 
 
 # todo routes
@@ -30,9 +26,9 @@ class TaskList(Resource):
     @api.doc('create a new todo')
     def post(self) -> Tuple[Dict[str, str], int]:
         """Create a new Todos"""
-        title = request.form['title']
-        body = request.form['body']
-        response = Todo.create({'title': title, 'body': body})
+        title = request.form['name']
+        body = request.form['bio']
+        response = Todo.create({'name': title, 'bio': body})
         return response, 201
 
 
@@ -53,9 +49,9 @@ class Task(Resource):
     @api.doc('update a todo')
     def put(self, todo_id):
         """Update a Todos"""
-        title = request.form['title']
-        body = request.form['body']
-        response = Todo.update(todo_id, {'title': title, 'body': body})
+        title = request.form['name']
+        body = request.form['bio']
+        response = Todo.update(todo_id, {'name': title, 'bio': body})
         return response, 201
 
 

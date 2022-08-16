@@ -1,8 +1,8 @@
 {
     "db": {
-            "url" : "mongodb://localhost:27017/",
+            "url" : "mongodb://146.56.161.53:27017/",
             "name" :"Clouflake",
-            "user" :"",
-            "password" :""
+            "user" :"mongo",
+            "password" :"mongo"
     }
 }
